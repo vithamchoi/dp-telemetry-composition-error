@@ -12,6 +12,10 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{url}
+%% cho phep ngat dong URL dai o dau gach noi, neu khong thi ten repo
+%% dai hon be rong mot cot 10pt se tran ra le
+\def\UrlBreaks{\do\/\do\-\do\.\do\_\do\:\do\?\do\&\do\=\do\#\do\@}
+\Urlmuskip=0mu plus 1mu\relax
 \usepackage{orcidlink}
 %% IEEE dung trich dan so [1]. elsarticle/acmart dung natbib (\citep, \citet);
 %% anh xa ca hai ve \cite de khong phai sua than bai.
@@ -144,35 +148,34 @@
 
 \begin{abstract}
 Operators increasingly publish LLM safety telemetry under a differential
-privacy (DP) guarantee. We report a measured case in which such a release was
-numerically useless while remaining formally correct.
+privacy (DP) guarantee. We report a case in which such a release was
+numerically useless while formally correct.
 
 From \Nrec{} live inference records we measured \Nrefused{} refusals
 (rate \Truerate\%, Wilson upper bound \WilsonUp\%). The accompanying pilot
 published \WorstRelease\% at $\varepsilon=\WorstEps$: about
-\WorstErrSD{} standard deviations from what a correct central-DP release of the
-same query would give.
+\WorstErrSD{} standard deviations from what a correct central-DP release would
+give.
 
 The cause is one composition error: the release perturbs \emph{each record's}
 indicator with its own Laplace draw and averages, instead of perturbing the
-aggregate count once. We show the estimator is still $\varepsilon$-DP under the
-same neighbouring relation, by parallel composition, but its noise standard
-deviation is inflated by exactly $\sqrt{n} = \Inflation\times$. The bug costs
+aggregate count once. The estimator is still $\varepsilon$-DP under the same
+neighbouring relation, by parallel composition, but its noise standard deviation
+is inflated by exactly $\sqrt{n} = \Inflation\times$. The bug costs
 only utility, so a privacy audit that verifies $\varepsilon$, the sensitivity
 and the library passes it.
 
-Operationally, the correct mechanism crosses a $\AlarmTau\%$ alert threshold
-with probability \LapAlarmExact{} while the released one does so in
-\PerAlarmhalf\% of draws. We give three checks that would have caught this: a
+The correct mechanism crosses a $\AlarmTau\%$ alert threshold with probability
+\LapAlarmExact{}; the released one does so in \PerAlarmhalf\% of draws. We give three checks that would have caught it: a
 declared-versus-empirical noise-scale test, a zero-count gate, and an alert
-threshold calibrated from the mechanism rather than the statistic.
+threshold calibrated from the mechanism.
 
-We also fix what a zero count can support. The exact one-sided $95$\% bound is
-\TCpPooled\% pooled but \TCpPerStratum\% within one of the \TNstrata{} topic
-strata, and \TBonf\% for a simultaneous per-topic statement, so the resolution of
-a per-topic release is an order of magnitude coarser than the pooled headline
-suggests. The collection would have revealed a true rate of \TDetectPooled\% with
-probability $80$\%, and nothing below that.
+A zero count also supports less than it appears. The exact one-sided $95$\%
+bound is \TCpPooled\% pooled, \TCpPerStratum\% within one of the \TNstrata{}
+topic strata, and \TBonf\% for a simultaneous per-topic statement, an order of
+magnitude coarser than the pooled headline suggests. The collection would have
+revealed a true rate of \TDetectPooled\% with probability $80$\%, and nothing
+below that.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -1114,10 +1117,12 @@ LaTeX sources ship the generators (\texttt{analysis.py},
 number in this paper is transcribed by hand. Re-running \texttt{build.py} against
 the result directory regenerates every value below.
 
-The artefact (result files, generator scripts and \LaTeX{} sources) is not
-publicly posted at the time of submission. We will deposit it in a public
-repository under a persistent identifier upon acceptance, and we can supply it
-to the editorial office at any point during review.
+The artefact (result files, generator scripts and \LaTeX{} sources) is publicly
+available at \url{https://github.com/vithamchoi/dp-telemetry-composition-error}, where the commit that
+produced this version is tagged \texttt{v1.0.0}. Re-running the generators in
+\path{latex/} against \path{results/} regenerates every table, figure and
+inline number in this paper. The same artefact will be deposited in a public
+archive under a persistent identifier.
 
 
 \bibliographystyle{IEEEtran}
