@@ -393,15 +393,8 @@ publish the series, and why the series has to be trustworthy at the scale of the
 movements an operator cares about: single-digit percentage points, well inside
 the noise band of a mechanism that gets the composition wrong.
 
-\subsection{Refusal rate as a safety statistic}
-
-Refusal behaviour is the most visible output of alignment
-training~\cite{bai2022hh}, and refusal rate by topic is a natural service-level
-indicator: it moves when a policy changes, when a model is swapped, or when an
-adversary probes. That is exactly why an operator wants to publish it, and
-exactly why the published series must be trustworthy at the scale of the changes
-an operator cares about: which are single-digit percentage points, well inside
-the noise band of a mechanism that gets the composition wrong.
+Refusal rate by topic is also a natural service-level indicator: it moves when a
+policy changes, when a model is swapped, or when an adversary probes.
 
 \begin{figure}[t]
 \centering
@@ -962,6 +955,7 @@ DP release that nobody can sanity-check is a release nobody should act on.
 \subsection{Inputs}
 
 Two files, and the second is derived from a script we did not write.
+Table~\ref{tab:inputs} lists them.
 
 \begin{table}[h]
 \centering
@@ -1032,11 +1026,11 @@ That is also the first of the three checks of Section~\ref{sec:checks}, stated
 as a falsification test rather than as a recommendation: it is the check we
 would want run against our own claim.
 
-\begin{acks}
-We thank our colleagues for discussion of an earlier draft. This research
-received no specific grant from any funding agency in the public, commercial
-or not-for-profit sectors.
-\end{acks}
+\section*{Acknowledgements}
+
+We thank our colleagues for discussion of an earlier draft. The authors
+acknowledge the support of time and facilities from the HCM City University of
+Technology and Engineering (HCM-UTE) for this study.
 
 \section*{CRediT Authorship Contribution Statement}
 
@@ -1051,6 +1045,11 @@ The authors declare that they have no known competing financial interests or
 personal relationships that could have appeared to influence the work reported
 in this paper.
 
+\section*{Funding}
+
+This research received no specific grant from any funding agency in the
+public, commercial or not-for-profit sectors.
+
 \section*{Data Availability}
 
 The measured result files, the generator scripts that read them, and the LaTeX
@@ -1063,11 +1062,10 @@ number in this paper is transcribed by hand. Re-running \texttt{build.py} agains
 the result directory regenerates every value below.
 
 The artefact (result files, generator scripts and \LaTeX{} sources) is publicly
-available at \url{https://github.com/vithamchoi/dp-telemetry-composition-error}, where the commit that
-produced this version is tagged \texttt{v1.0.0}. Re-running the generators in
-\path{latex/} against \path{results/} regenerates every table, figure and
-inline number in this paper. The same artefact will be deposited in a public
-archive under a persistent identifier.
+available at \url{https://github.com/vithamchoi/dp-telemetry-composition-error} and archived at
+\url{https://doi.org/10.5281/zenodo.23063354}, a persistent identifier that resolves to the current
+version. Re-running the generators in \path{latex/} against \path{results/}
+regenerates every table, figure and inline number in this paper.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
